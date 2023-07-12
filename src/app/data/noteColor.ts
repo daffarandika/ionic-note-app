@@ -1,0 +1,1 @@
+export type NoteColor = "orange" | "green" | "violet" | "blue" | "pink";

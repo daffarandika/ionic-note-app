@@ -1,20 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class="header">
+    <div class="header-content">
+      <h2>Your Notes</h2>
+      <ion-icon [name]="(showSort) ? 'funnel' : 'funnel-outline'" (click)="sortIconClicked()"></ion-icon>
+    </div>
+    <div *ngIf="showSort" [@enterAnimation] class="sort">
+      <p>Sort by:</p>
+      <br>
+      <ion-radio-group value="date">
+        <ion-radio value="date" labelPlacement="end">Date</ion-radio>
+        <ion-radio value="title" labelPlacement="end">Title</ion-radio>
+        <ion-radio value="color" labelPlacement="end">Color</ion-radio>
+      </ion-radio-group> <br>
+      <ion-radio-group value="asc">
+        <ion-radio value="asc" labelPlacement="end">Ascending</ion-radio>
+        <ion-radio value="desc" labelPlacement="end">Descending</ion-radio>
+      </ion-radio-group>
+    </div>
+  </div>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div *ngFor="let note of notes">
+      <note [title]="note.title" [content]="note.content"></note>
+    </div>
   </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

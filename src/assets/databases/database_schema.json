@@ -1,0 +1,23 @@
+{
+    "database": "note-db",
+    "version": 1,
+    "encrypted": false,
+    "mode": "full",
+    "tables": [
+        { 
+            "name": "note",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY NOT NULL" },
+                { "column": "title", "value": "TEXT NOT NULL" },
+                { "column": "content", "value": "TEXT NOT NULL" },
+                { "column": "timestamp", "value": "INTEGER NOT NULL" },
+                { "column": "color", "value": "TEXT NOT NULL" },
+                { "column": "last_modified", "value": "INTEGER DEFAULT (strftime('%s', 'now'))" },
+                { "column": "sql_deleted", "value": "BOOLEAN DEFAULT 0" }
+            ],
+            "values": [ 
+                [1, "Hello world", "This is a placeholder content", 1688979944, "orange", 1688979944, 0]
+            ]
+        }
+    ]
+}

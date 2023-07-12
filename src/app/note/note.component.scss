@@ -1,0 +1,27 @@
+.note {
+    text-align: start;
+    position: relative;
+    width: 90%;
+    padding: 1em 1.2em;
+    margin: 2em auto;
+    color: #fff;
+    background-color: red;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border-width: 0 32px 32px 0;
+        border-style: solid;
+        border-color: #fe9031 var(--background);
+    }
+}
+
+.rounded {
+    border-radius: 5px;
+
+    &::before {
+        border-radius: 0 0 0 5px;
+    }
+}
