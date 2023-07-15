@@ -22,12 +22,12 @@
 
   <div id="container">
     <div *ngFor="let note of notes">
-      <note [title]="note.title" [content]="note.content"></note>
+      <note [title]="note.title" [content]="note.content" [color]="note.color"></note>
     </div>
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="dark">
+    <ion-fab-button color="dark" (click)="addNote()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

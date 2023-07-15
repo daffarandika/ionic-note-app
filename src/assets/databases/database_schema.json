@@ -14,9 +14,6 @@
                 { "column": "color", "value": "TEXT NOT NULL" },
                 { "column": "last_modified", "value": "INTEGER DEFAULT (strftime('%s', 'now'))" },
                 { "column": "sql_deleted", "value": "BOOLEAN DEFAULT 0" }
-            ],
-            "values": [ 
-                [1, "Hello world", "This is a placeholder content", 1688979944, "orange", 1688979944, 0]
             ]
         }
     ]

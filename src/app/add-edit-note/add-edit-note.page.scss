@@ -1,0 +1,62 @@
+ion-textarea {
+    height: 30vh;
+    --color: black;
+    --highlight-color-focused: black;
+}
+
+ion-input {
+    font-size: 1.5em;
+    --color: black;
+    --highlight-color-focused: black;
+}
+
+.chip-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.chip {
+    border-radius: 50%;
+    width: 15vw;
+    height: 15vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.selected {
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+}
+
+.orange {
+    background-color: orange;
+    --background: orange;
+    --highlight-color: orange;
+}
+
+.yellow {
+    background-color: yellow;
+    --background: yellow;
+    --highlight-color: yellow;
+}
+
+.violet {
+    background-color: violet;
+    --background: violet;
+    --highlight-color: violet;
+}
+
+.blue {
+    background-color: blue;
+    --background: blue;
+    --highlight-color: blue;
+}
+
+.pink {
+    background-color: pink;
+    --background: pink;
+    --highlight-color: pink;
+}

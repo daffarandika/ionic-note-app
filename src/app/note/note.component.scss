@@ -5,7 +5,6 @@
     padding: 1em 1.2em;
     margin: 2em auto;
     color: #fff;
-    background-color: red;
 
     &::before {
         content: "";
@@ -14,7 +13,6 @@
         right: 0px;
         border-width: 0 32px 32px 0;
         border-style: solid;
-        border-color: #fe9031 var(--background);
     }
 }
 
@@ -23,5 +21,48 @@
 
     &::before {
         border-radius: 0 0 0 5px;
+    }
+}
+
+.note-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.note.orange {
+    background-color: orange;
+    &::before {
+        border-color: rgb(110, 74, 7) var(--background); 
+    }
+}
+
+.note.yellow {
+    background-color: yellow;
+    &::before {
+        border-color: rgb(110, 74, 7) var(--background); 
+    }
+}
+
+.note.violet {
+    background-color: violet;
+    &::before {
+        border-color: rgb(110, 74, 7) var(--background); 
+    }
+}
+
+.note.blue {
+    background-color: blue;
+    &::before {
+        border-color: rgb(110, 74, 7) var(--background); 
+    }
+}
+
+.note.pink {
+    background-color: pink;
+    &::before {
+        border-color: rgb(110, 74, 7) var(--background); 
     }
 }

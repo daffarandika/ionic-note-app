@@ -1,4 +1,7 @@
-<div class="note rounded">
+<div [ngClass]="[color, 'note', 'rounded']">
   <h3>{{ title }}</h3>
+<div class="note-content">
   <p>{{ content }}</p>
+  <ion-icon slot="end" name="trash"></ion-icon>
+</div>
 </div>

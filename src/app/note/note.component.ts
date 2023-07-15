@@ -11,7 +11,7 @@ export class NoteComponent  implements OnInit {
 
   @Input() title: string = "Title";
   @Input() content: string= "Content";
-  @Input() color: NoteColor = "orange";
+  @Input() color: NoteColor = "pink";
   constructor() { }
 
   ngOnInit() {}

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
 import { AlertController } from '@ionic/angular';
 import { Note } from '../data/note';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,20 +31,24 @@ export class HomePage implements OnInit {
   notes: Note[] = [];
   constructor(
     private databaseService: DatabaseService,
-    private alertController: AlertController
-  ) { }
-
-  ngOnInit() {
+    private router: Router,
+  ) {
     this.databaseService.getNotes().subscribe( async (val) => {
-      const alert = await this.alertController.create({
-        message: "NOtes: " + JSON.stringify(val)
-      })
-      await alert.present();
       this.notes = val.values as Note[];
     })
+   }
+
+  ngOnInit() {
   }
 
   sortIconClicked() {
     this.showSort = !this.showSort;
+  }
+
+  addNote() {
+    this.router.navigateByUrl('/add-note');
+    this.databaseService.getNotes().subscribe((val) => {
+      this.notes = val.values as Note[];
+    })
   }
 }
