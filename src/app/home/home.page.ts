@@ -1,9 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
-import { AlertController } from '@ionic/angular';
 import { Note } from '../data/note';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -34,8 +33,12 @@ export class HomePage implements OnInit {
   constructor(
     private databaseService: DatabaseService,
     private router: Router,
+    private aRoute: ActivatedRoute
   ) {
     console.log('home constructor called');
+    aRoute.params.forEach(() => {
+      this.loadNotes();
+    })
   }
 
   ngOnInit() {
@@ -53,22 +56,18 @@ export class HomePage implements OnInit {
     })
   }
   
-  loadNotes() {
+  loadNotes(notes?: Note[]) {
     console.log('>> load notes called');
+    if (notes) {
+      this.notes = notes;
+    }
     this.databaseService.getNotes().subscribe((val) => {
       this.notes = val.values as Note[];
       console.log(`>> notes from val: ${JSON.stringify(val)}`);
       console.log(`>> notes from load notes: ${JSON.stringify(this.notes)}`);
+      this.sortByChanged();
     })
-    this.sortByChanged();
   }
-
-  editNote(id: number) {
-    this.router.navigateByUrl(`/edit-note/${id}`).then(() => {
-      this.loadNotes();
-    });
-  }
-
 
   sortByChanged() {
     console.log(`>> model sort by changed ${JSON.stringify(this.sortBy)}`);

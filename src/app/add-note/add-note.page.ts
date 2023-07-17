@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NoteColor } from '../data/noteColor';
 import { DatabaseService } from '../services/database.service';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-note',
@@ -16,7 +17,7 @@ export class AddNotePage implements OnInit {
 
   constructor(
     private databaseService: DatabaseService,
-    private router: Router
+    private navController: NavController,
   ) {
   }
 
@@ -30,8 +31,8 @@ export class AddNotePage implements OnInit {
 
   async addNote() {
     console.log(`>> inserting ${this.title} ${this.content}`)
-    this.databaseService.addNote(this.title, this.content, this.selected).then(() => {
-      this.router.navigateByUrl('/home');
+    this.databaseService.addNote(this.title, this.content, this.selected).then((notes) => {
+      this.navController.navigateBack("/home", {state: notes} );
     });
   }
 

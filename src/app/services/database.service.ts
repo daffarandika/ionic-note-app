@@ -120,8 +120,8 @@ export class DatabaseService {
     const statement = `INSERT INTO note (title, content, color, timestamp, last_modified, sql_deleted) values ('${title}', '${content}', '${color}', ${Date.now()}, ${Date.now()}, ${0})`
     console.log(`>> insert ${statement}`);
     await this.sqlite.execute({database: this.dbName, statements: statement, readonly: false, transaction: true })
-    this.sqlite.query({statement: "SELECT * FROM note;", database: "note-db", readonly: false, values: []}).then((res) => {
-      console.log(">> res from query after insert" +JSON.stringify(res))
+    return this.sqlite.query({statement: "SELECT * FROM note where sql_deleted = 0;", database: "note-db", readonly: false, values: []}).then((res) => {
+      return res.values as Note[];
     })
   }
   async deleteNoteById(id: number) {
