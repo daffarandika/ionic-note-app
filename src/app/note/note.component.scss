@@ -33,36 +33,36 @@
 }
 
 .note.orange {
-    background-color: orange;
+    background-color: #ffab91;
     &::before {
-        border-color: rgb(110, 74, 7) var(--background); 
+        border-color: #c4765e var(--background); 
     }
 }
 
 .note.yellow {
-    background-color: yellow;
+    background-color: #fdfd96;
     &::before {
-        border-color: rgb(110, 74, 7) var(--background); 
+        border-color: #ffc6a2 var(--background); 
     }
 }
 
 .note.violet {
-    background-color: violet;
+    background-color: #cf94da;
     &::before {
-        border-color: rgb(110, 74, 7) var(--background); 
+        border-color: #9860a3 var(--background); 
     }
 }
 
 .note.blue {
-    background-color: blue;
+    background-color: #81deea;
     &::before {
-        border-color: rgb(110, 74, 7) var(--background); 
+        border-color: #46a7b2 var(--background); 
     }
 }
 
 .note.pink {
-    background-color: pink;
+    background-color: #f48fb1;
     &::before {
-        border-color: rgb(110, 74, 7) var(--background); 
+        border-color: #573c55 var(--background); 
     }
 }
