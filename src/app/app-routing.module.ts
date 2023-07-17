@@ -13,7 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'add-note',
-    loadChildren: () => import('./add-edit-note/add-edit-note.module').then( m => m.AddEditNotePageModule)
+    loadChildren: () => import('./add-note/add-note.module').then( m => m.AddEditNotePageModule)
+  },
+  {
+    path: 'edit-note/:id',
+    loadChildren: () => import('./edit-note/edit-note.module').then( m => m.EditNotePageModule)
   },
 ];
 

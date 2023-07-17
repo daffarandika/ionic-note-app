@@ -4,6 +4,7 @@ import { AlertController, Platform } from '@ionic/angular';
 import { BehaviorSubject, Observable, from, of, switchMap } from 'rxjs';
 import { CapacitorSQLite, JsonSQLite, SQLiteConnection, SQLiteDBConnection, capSQLiteImportOptions, capSQLiteJson, capSQLiteOptions, capSQLiteQueryOptions, capSQLiteValues } from '@capacitor-community/sqlite';
 import { Preferences } from '@capacitor/preferences';
+import { Note } from '../data/note';
 
 const DB_SETUP_KEY = 'first_db_setup';
 const DB_NAME_KEY = 'db_name';
@@ -110,7 +111,7 @@ export class DatabaseService {
         if (!isReady) {
           return of({ values: [] });
         } else {
-          return from(this.sqlite.query({statement: "SELECT * FROM note;", database: "note-db", readonly: false, values: []}))
+          return from(this.sqlite.query({statement: "SELECT * FROM note where sql_deleted = 0", database: "note-db", readonly: false, values: []}))
         }
     })
   )}
@@ -118,10 +119,24 @@ export class DatabaseService {
   async addNote(title: string = "title", content: string = "content", color : string = "green") {
     const statement = `INSERT INTO note (title, content, color, timestamp, last_modified, sql_deleted) values ('${title}', '${content}', '${color}', ${Date.now()}, ${Date.now()}, ${0})`
     console.log(`>> insert ${statement}`);
-    const option: capSQLiteOptions = {database: this.dbName, readonly: false};
-    // this.sqlite.createConnection({database: this.dbName, readonly: true}).then(() => {
-      return this.sqlite.execute({database: this.dbName, statements: statement, readonly: false, transaction: true })
-    // })
+    await this.sqlite.execute({database: this.dbName, statements: statement, readonly: false, transaction: true })
+    this.sqlite.query({statement: "SELECT * FROM note;", database: "note-db", readonly: false, values: []}).then((res) => {
+      console.log(">> res from query after insert" +JSON.stringify(res))
+    })
+  }
+  async deleteNoteById(id: number) {
+    const statement = `DELETE FROM note WHERE id = ${id}`
+    return this.sqlite.execute({statements: statement, database: "note-db", readonly: false, transaction: true });
+  }
+  
+  async getNoteById(id: number) {
+    const statement = `SELECT * FROM note WHERE id = ${id}`;
+    return (await this.sqlite.query({statement: statement, database: "note-db", readonly: false, values: [] })).values![0];
+  }
+  async editNote(note: Note) {
+    const { title, content, color, id } = note;
+    const statement = `UPDATE note SET title = '${title}', content = '${content}', color = '${color}' WHERE id = '${id}'`;
+    return this.sqlite.execute({statements: statement, database: 'note-db', readonly: false, transaction: true});
   }
 
 }

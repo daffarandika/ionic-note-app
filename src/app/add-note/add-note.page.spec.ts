@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddEditNotePage } from './add-edit-note.page';
+import { AddNotePage } from './add-note.page';
 
 describe('AddEditNotePage', () => {
-  let component: AddEditNotePage;
-  let fixture: ComponentFixture<AddEditNotePage>;
+  let component: AddNotePage;
+  let fixture: ComponentFixture<AddNotePage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(AddEditNotePage);
+    fixture = TestBed.createComponent(AddNotePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -8,12 +8,12 @@
     <div *ngIf="showSort" [@enterAnimation] class="sort">
       <p>Sort by:</p>
       <br>
-      <ion-radio-group value="date">
+      <ion-radio-group value="date" [(ngModel)]="sortBy" (ionChange)="sortByChanged()">
         <ion-radio value="date" labelPlacement="end">Date</ion-radio>
         <ion-radio value="title" labelPlacement="end">Title</ion-radio>
         <ion-radio value="color" labelPlacement="end">Color</ion-radio>
       </ion-radio-group> <br>
-      <ion-radio-group value="asc">
+      <ion-radio-group value="asc" [(ngModel)]="sortOrder" (ionChange)="sortByChanged()">
         <ion-radio value="asc" labelPlacement="end">Ascending</ion-radio>
         <ion-radio value="desc" labelPlacement="end">Descending</ion-radio>
       </ion-radio-group>
@@ -22,7 +22,14 @@
 
   <div id="container">
     <div *ngFor="let note of notes">
-      <note [title]="note.title" [content]="note.content" [color]="note.color"></note>
+      <note 
+        (noteClicked)="getNoteById(note.id)"
+        (deleteClicked)="deleteNote(note.id)"
+        [title]="note.title" 
+        [content]="note.content" 
+        [color]="note.color" 
+        [note_id]="note.id">
+      </note>
     </div>
   </div>
 

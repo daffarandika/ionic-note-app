@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddEditNotePageRoutingModule } from './add-edit-note-routing.module';
+import { AddEditNotePageRoutingModule } from './add-note-routing.module';
 
-import { AddEditNotePage } from './add-edit-note.page';
+import { AddNotePage } from './add-note.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { AddEditNotePage } from './add-edit-note.page';
     IonicModule,
     AddEditNotePageRoutingModule
   ],
-  declarations: [AddEditNotePage]
+  declarations: [AddNotePage]
 })
 export class AddEditNotePageModule {}

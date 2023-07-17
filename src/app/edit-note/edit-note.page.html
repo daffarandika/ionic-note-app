@@ -1,0 +1,22 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-buttons slot="start">
+    <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngClass]="[selected, 'ion-padding']">
+  <div class="chip-section">
+    <div (click)="changeSelected('orange')"[ngClass]="['chip', 'orange', selected == 'orange' ? 'selected' : '']"></div>
+    <div (click)="changeSelected('yellow')"[ngClass]="['chip', 'yellow', selected == 'yellow' ? 'selected' : '']"></div>
+    <div (click)="changeSelected('violet')"[ngClass]="['chip', 'violet', selected == 'violet' ? 'selected' : '']"></div>
+    <div (click)="changeSelected('blue')"[ngClass]="['chip', 'blue', selected == 'blue' ? 'selected' : '']"></div>
+    <div (click)="changeSelected('pink')"[ngClass]="['chip', 'pink', selected == 'pink' ? 'selected' : '']"></div>
+  </div>
+    <ion-input [(ngModel)]="title" type="text" placeholder="Choose a title" class="ion-margin"></ion-input>
+    <ion-textarea [(ngModel)]="content" type="text" placeholder="Enter your note here" class="ion-margin"></ion-textarea>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="dark" (click)="editNote()">
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

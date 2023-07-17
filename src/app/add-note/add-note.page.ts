@@ -4,11 +4,11 @@ import { DatabaseService } from '../services/database.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-edit-note',
-  templateUrl: './add-edit-note.page.html',
-  styleUrls: ['./add-edit-note.page.scss'],
+  selector: 'app-add-note',
+  templateUrl: './add-note.page.html',
+  styleUrls: ['./add-note.page.scss'],
 })
-export class AddEditNotePage implements OnInit {
+export class AddNotePage implements OnInit {
 
   selected: NoteColor = "orange";
   title = "";
@@ -21,7 +21,7 @@ export class AddEditNotePage implements OnInit {
   }
 
   ngOnInit() {
-    // await this.databaseService.setupDB()
+                                           
   }
 
   changeSelected(selected: NoteColor) {
@@ -30,8 +30,9 @@ export class AddEditNotePage implements OnInit {
 
   async addNote() {
     console.log(`>> inserting ${this.title} ${this.content}`)
-    await this.databaseService.addNote(this.title, this.content, this.selected);
-    this.router.navigateByUrl('/home');
+    this.databaseService.addNote(this.title, this.content, this.selected).then(() => {
+      this.router.navigateByUrl('/home');
+    });
   }
 
 }
