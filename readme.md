@@ -1,6 +1,10 @@
 # Notes App
 
-This is a project inspired by [Phillip Lacker](https://www.youtube.com/watch?v=8YPXv7xKh2w), re-written using ionic
+This is a project inspired by [Phillip Lacker](https://github.com/philipplackner) in one of [his youtube videos](https://ionicframework.com/docs/intro/cli), re-written using ionic
+
+## Known Limitation
+1. Currently unable to be run on web
+2. Has not been tested on ios
 
 ## How to run this app
 
