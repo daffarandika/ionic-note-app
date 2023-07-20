@@ -21,5 +21,13 @@ ion-radio {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    .icon-container {
+      display: flex;
+      flex-direction: row;
+      * {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+  }
   }
 }

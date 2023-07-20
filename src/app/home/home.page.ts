@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
 import { Note } from '../data/note';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SearchbarCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,8 @@ export class HomePage implements OnInit {
   title: string = "";
   sortBy: string = "date";
   sortOrder: string = "asc";
+  isSearch: boolean = false;
+  searchQuery: string = "";
   notes: Note[] = [];
   constructor(
     private databaseService: DatabaseService,
@@ -105,5 +108,26 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl(`/edit-note/${id}`).then(() => {
       this.loadNotes();
     })
+  }
+
+  showSearch() {
+    this.isSearch = true;
+  }
+
+  onSearchChange(ev: Event) {
+    let query = (ev as SearchbarCustomEvent).target.value ?? "";
+    if (query.length === 0) {
+      this.loadNotes();
+      return;
+    }
+    query = query.toLowerCase()
+    this.notes = this.notes.filter((note) => 
+      note.content.toLowerCase().indexOf(query) > -1 ||
+      note.title.toLowerCase().indexOf(query) > -1
+    )
+  }
+
+  hideSearch() {
+    this.isSearch = false;
   }
 }

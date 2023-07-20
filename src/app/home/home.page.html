@@ -1,9 +1,15 @@
 <ion-content [fullscreen]="true">
 
   <div class="header">
-    <div class="header-content">
+    <div *ngIf="!isSearch" class="header-content">
       <h2>Your Notes</h2>
-      <ion-icon [name]="(showSort) ? 'funnel' : 'funnel-outline'" (click)="sortIconClicked()"></ion-icon>
+      <div class="icon-container">
+        <ion-icon name="search" (click)="showSearch()"></ion-icon>  
+        <ion-icon [name]="(showSort) ? 'funnel' : 'funnel-outline'" (click)="sortIconClicked()"></ion-icon>
+      </div>
+    </div>
+    <div *ngIf="isSearch" class="header-content">
+      <ion-searchbar [(ngModel)]="searchQuery" placeholder="Search" inputmode="text" type="text" (ionChange)="onSearchChange($event)" (ionBlur)="hideSearch()" [debounce]="250" showCancelButton="always"></ion-searchbar>
     </div>
     <div *ngIf="showSort" [@enterAnimation] class="sort">
       <p>Sort by:</p>
